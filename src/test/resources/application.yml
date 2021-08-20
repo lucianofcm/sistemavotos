@@ -1,0 +1,22 @@
+spring:
+  cache:
+    ehcache:
+      config: classpath:ehcache.xml
+---  
+spring:
+  profiles: tes
+  h2:
+   console:
+      enabled: true
+      #jdbc:h2:mem:testdb
+      path: /h2-console
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+    generate-ddl: true    
+    defer-datasource-initialization: true
+  devtools:
+    add-properties: false
+  datasource:
+    url: jdbc:h2:mem:sisvotosdb;DB_CLOSE_ON_EXIT=FALSE;;DATABASE_TO_UPPER=false

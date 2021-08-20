@@ -14,11 +14,19 @@ import javax.persistence.UniqueConstraint;
 
 import com.sistemavotos.enumeration.EnumOpcaoVotacao;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "votacao", uniqueConstraints = { @UniqueConstraint(columnNames = { "usuario_id", "pauta_id" }) })
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+@EqualsAndHashCode
 public class Votacao {
 
 	@Id
@@ -33,7 +41,7 @@ public class Votacao {
     @JoinColumn(name = "pauta_id")
 	private Pauta pauta;
 	
-	@Column(name="opcao_votacao")
+	@Column(name="opcao_voto")
 	@Enumerated(EnumType.STRING)
 	private EnumOpcaoVotacao opcaoVoto;
 	
