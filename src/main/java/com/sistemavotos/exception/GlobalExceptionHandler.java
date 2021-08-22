@@ -28,39 +28,67 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     private boolean printStackTrace;
 
     @Override
-    @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
                                                                   HttpHeaders headers,
                                                                   HttpStatus status,
                                                                   WebRequest request) {
-        ErrorResponse errorResponse = new ErrorResponse(HttpStatus.UNPROCESSABLE_ENTITY.value(), "Validation error. Check 'errors' field for details.");
+        ErrorResponse errorResponse = new ErrorResponse(HttpStatus.UNPROCESSABLE_ENTITY.value(), "Erro desconhecido entre em contato com administrador");
         for (FieldError fieldError : ex.getBindingResult().getFieldErrors()) {
             errorResponse.addValidationError(fieldError.getField(), fieldError.getDefaultMessage());
         }
         return ResponseEntity.unprocessableEntity().body(errorResponse);
     }
+    
+    @ExceptionHandler(PautaException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ResponseEntity<Object> controlarPautaException(PautaException pautaException, WebRequest request) {
+        log.error(pautaException.getMessage());
+        return contruirReposta(pautaException, HttpStatus.BAD_REQUEST, request);
+    }
 
     @ExceptionHandler(VotacaoEncerradaException.class)
-    @ResponseStatus(HttpStatus.NOT_FOUND)
-    public ResponseEntity<Object> handleNoSuchElementFoundException(VotacaoEncerradaException itemNotFoundException, WebRequest request) {
-        log.error("Failed to find the requested element", itemNotFoundException);
-        return buildErrorResponse(itemNotFoundException, HttpStatus.NOT_FOUND, request);
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ResponseEntity<Object> controlarVotacaoEncerrdaException(VotacaoEncerradaException votacaoEncerradaException, WebRequest request) {
+        log.error("Não é possível votar pois a votação já foi encerrda.", votacaoEncerradaException);
+        return contruirReposta(votacaoEncerradaException, HttpStatus.BAD_REQUEST, request);
+    }
+    
+    @ExceptionHandler(UsuarioJaVotouException.class)
+    @ResponseStatus(HttpStatus.CONFLICT)
+    public ResponseEntity<Object> controlarUsuarioJaVotouExcetion(UsuarioJaVotouException usuarioJaVotouException, WebRequest request) {
+        log.error("O usuário já votou nesta pauta.");
+        return contruirReposta(usuarioJaVotouException, HttpStatus.CONFLICT, request);
+    }
+    
+    @ExceptionHandler(UsuarioNaoPodeVotarException.class)
+    @ResponseStatus(HttpStatus.CONFLICT)
+    public ResponseEntity<Object> controlarUsuarioNaoPodeVotarException(UsuarioNaoPodeVotarException usuarioNaoPodeVotarException, WebRequest request) {
+        log.error("O usuário não pode votar.");
+        return contruirReposta(usuarioNaoPodeVotarException, HttpStatus.CONFLICT, request);
+    }
+    
+    @ExceptionHandler(BasicException.class)
+    @ResponseStatus(HttpStatus.CONFLICT)
+    public ResponseEntity<Object> controlarBasicException(BasicException basicException, WebRequest request) {
+        log.error(basicException.getMessage());
+        return contruirReposta(basicException, HttpStatus.BAD_REQUEST, request);
     }
 
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    public ResponseEntity<Object> handleAllUncaughtException(Exception exception, WebRequest request) {
-        log.error("Unknown error occurred", exception);
-        return buildErrorResponse(exception, "Unknown error occurred", HttpStatus.INTERNAL_SERVER_ERROR, request);
+    public ResponseEntity<Object> controlarErroDesconhecido(Exception exception, WebRequest request) {
+        log.error("Erro interno desconhecido, contacte o administrdor no ramal 5665", exception);
+        return construirResposta(exception, "Unknown error occurred", HttpStatus.INTERNAL_SERVER_ERROR, request);
     }
 
-    private ResponseEntity<Object> buildErrorResponse(Exception exception,
+    private ResponseEntity<Object> contruirReposta(Exception exception,
                                                       HttpStatus httpStatus,
                                                       WebRequest request) {
-        return buildErrorResponse(exception, exception.getMessage(), httpStatus, request);
+        return construirResposta(exception, exception.getMessage(), httpStatus, request);
     }
 
-    private ResponseEntity<Object> buildErrorResponse(Exception exception,
+    private ResponseEntity<Object> construirResposta(Exception exception,
                                                       String message,
                                                       HttpStatus httpStatus,
                                                       WebRequest request) {
@@ -86,6 +114,6 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
             HttpStatus status,
             WebRequest request) {
 
-        return buildErrorResponse(ex, status, request);
+        return contruirReposta(ex, status, request);
     }
 }

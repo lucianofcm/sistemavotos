@@ -20,3 +20,4 @@ spring:
     add-properties: false
   datasource:
     url: jdbc:h2:mem:sisvotosdb;DB_CLOSE_ON_EXIT=FALSE;;DATABASE_TO_UPPER=false
+  urlValidadorCPF: https://user-info.herokuapp.com/users

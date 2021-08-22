@@ -7,5 +7,8 @@ import com.sistemavotos.domain.Pauta;
 
 @Repository
 public interface PautaRepository extends JpaRepository<Pauta, Integer> {
+	
+	
+	 
 
 }

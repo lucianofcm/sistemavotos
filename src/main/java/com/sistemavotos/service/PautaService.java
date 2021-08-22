@@ -6,5 +6,6 @@ public interface PautaService {
 	
 	public Pauta cadastrarPauta(Pauta pauta);
 	public Pauta localizarPautaPorID(Integer id);
+	public Boolean pautaEncerrada(Pauta pauta);
 
 }

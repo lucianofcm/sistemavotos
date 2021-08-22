@@ -12,11 +12,6 @@ import com.sistemavotos.domain.Usuario;
 public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
 
 	Optional<Usuario> findByCpf(String cpf);
-
 	List<Usuario> findByNome(String nome);
 
-	/*
-	 * @Query("select u from Usuario u where u.cpf = :numCpf and u") Usuario
-	 * findByEmailAddress(@Param("lastname") String lastname);
-	 */
 }

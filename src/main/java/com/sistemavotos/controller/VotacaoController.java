@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.sistemavotos.domain.Pauta;
+import com.sistemavotos.dto.DuracaoVotacaoDTO;
 import com.sistemavotos.dto.PautaDTO;
+import com.sistemavotos.dto.VotacaoDTO;
 import com.sistemavotos.service.PautaService;
+import com.sistemavotos.service.VotacaoService;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -24,26 +26,28 @@ import io.swagger.annotations.ApiResponses;
 
 @Api(tags = "Voto controller.")
 @RestController
-@RequestMapping(value = "/pauta")
-public class PautaController {
+@RequestMapping(value = "/votacao")
+public class VotacaoController {
 	@Autowired
 	private PautaService pautaService;
 	@Autowired
 	private ModelMapper modelMapper;
-
-	@GetMapping(value = "/{idPauta}")
-	@ApiOperation(value= "Recupera uma pauta a partir do seu ID.")
-	@ApiResponses(value = { @ApiResponse(code = 404, message = "A pauta não foi localizada.") })	
-	public PautaDTO localizarPautaPorId(@PathVariable Integer idPauta) {
-		return modelMapper.map(pautaService.localizarPautaPorID(idPauta), PautaDTO.class);
-
-	}
-
-	@PostMapping
-	@ApiOperation(value= "A partir do preenchimentos dos campos titulo, descricao será gerada uma nova pauta com o status ATIVA")
-	@ApiResponses(value = { @ApiResponse(code = 400, message = "Os campos título e descrição devem ser preenchidos. ") })
-    public ResponseEntity<Pauta> cadastrarPauta(@RequestBody @Valid PautaDTO pauta){
-		return ResponseEntity.status(HttpStatus.OK).body(pautaService.cadastrarPauta(modelMapper.map(pauta, Pauta.class)));
+	@Autowired
+	private VotacaoService votacaoService;
+	
+	@PostMapping("/iniciarVotacao")
+	@ApiOperation(value= "Inicia a votação por tempo determinado")
+    public ResponseEntity<Class<Void>> iniciarVotacao(@RequestBody @Valid DuracaoVotacaoDTO votacao){
+		votacaoService.iniciarVotacao(votacao);
+		return ResponseEntity.status(HttpStatus.OK).body(Void.class);
     }
+	
+
+	@PostMapping	
+	@ApiOperation(value= "Realiza votacao caso todos as regras tenham sido validadas.")
+    public ResponseEntity<String> votar(@RequestBody @Valid VotacaoDTO votacao) throws Exception{
+		return ResponseEntity.status(HttpStatus.OK).body(votacaoService.votar(votacao));
+    }
+	
 }
 

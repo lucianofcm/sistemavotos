@@ -7,16 +7,16 @@ server:
 
 spring:
   profiles:    active:    - prod
+  urlValidadorCPF: https://user-info.herokuapp.com/users
   datasource:
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://ec2-174-129-225-160.compute-1.amazonaws.com:5432/d21magvh0usajo
     username: bcmheeifucxpfz
     password: 898f126aff80f3a369c238bee1fb3cb95a66f01c0755685b453ae03ed1a3afaf
   jpa:
-    show-sql: true    hibernate:      ddl-auto: none
+    show-sql: true    hibernate:      ddl-auto: update
     database-platform: org.hibernate.dialect.PostgreSQLDialect  
     generate-ddl: true        defer-datasource-initialization: true  devtools:    add-properties: false
-
 server:  error:    include-message: always
     include-binding-errors: always
     include-stacktrace: on-param

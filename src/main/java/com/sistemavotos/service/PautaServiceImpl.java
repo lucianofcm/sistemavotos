@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sistemavotos.domain.Pauta;
+import com.sistemavotos.enumeration.EnumAtiva;
 import com.sistemavotos.exception.PautaException;
 import com.sistemavotos.repository.PautaRepository;
 
@@ -38,6 +39,16 @@ public class PautaServiceImpl implements PautaService {
 	@Override
 	public Pauta localizarPautaPorID(Integer id) {
 		return pautaRepository.findById(id).orElseThrow(() -> new PautaException("Não foi possível encontrar a pauta"));
+	}
+	
+	/**
+	 * Verifica se a pauta já foi encerrada.
+	 *
+	 * @param pauta  pauta sendo que está sendo utilizda
+	 * @return retorna true se a pauta já foi encerrada.
+	 */
+	public Boolean pautaEncerrada(Pauta pauta) {
+		return pautaRepository.getById(pauta.getId()).getIndAtiva().equals(EnumAtiva.N);
 	}
 
 }
