@@ -64,7 +64,7 @@ public class VotacaoServiceImpl implements VotacaoService {
 
 	@Override
 	public void resultadoVotacao(Votacao votacao) {
-		// TODO Auto-generated method stub
+		//votacaoRepo.findById(votacao.getPauta().getId()).ste
 
 	}
 	

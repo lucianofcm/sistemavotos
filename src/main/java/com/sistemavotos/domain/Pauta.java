@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.sistemavotos.dto.PautaDTO;
 import com.sistemavotos.enumeration.EnumAtiva;
 
 import lombok.AllArgsConstructor;
@@ -46,5 +47,5 @@ public class Pauta {
 		this.descricao = descricao;
 		this.indAtiva = indAtiva;
 	}
-
+	
 }

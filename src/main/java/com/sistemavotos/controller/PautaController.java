@@ -1,5 +1,7 @@
 package com.sistemavotos.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.modelmapper.ModelMapper;
@@ -37,6 +39,13 @@ public class PautaController {
 	public PautaDTO localizarPautaPorId(@PathVariable Integer idPauta) {
 		return modelMapper.map(pautaService.localizarPautaPorID(idPauta), PautaDTO.class);
 
+	}
+	
+	@GetMapping(value = "/")
+	@ApiOperation(value= "Lista todas as pautas cadastradas")
+	@ApiResponses(value = { @ApiResponse(code = 404, message = "A pauta não foi localizada.") })	
+	public ResponseEntity<List<PautaDTO>> listarTodasPautas() {
+		return ResponseEntity.status(HttpStatus.OK).body(pautaService.listarPautas());
 	}
 
 	@PostMapping

@@ -1,9 +1,14 @@
 package com.sistemavotos.service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sistemavotos.domain.Pauta;
+import com.sistemavotos.dto.PautaDTO;
 import com.sistemavotos.enumeration.EnumAtiva;
 import com.sistemavotos.exception.BasicException;
 import com.sistemavotos.exception.PautaException;
@@ -18,6 +23,9 @@ public class PautaServiceImpl implements PautaService {
 	/** Pauta repository. */
 	@Autowired
 	private PautaRepository pautaRepository;
+	
+	@Autowired
+	private ModelMapper modelMapper;
 
 	/**
 	 * Metodo reponsável por cadastrar uma pauta.
@@ -54,6 +62,11 @@ public class PautaServiceImpl implements PautaService {
 	 */
 	public Boolean pautaEncerrada(Pauta pauta) {
 		return pautaRepository.getById(pauta.getId()).getIndAtiva().equals(EnumAtiva.N);
+	}
+	
+	@Override
+	public List<PautaDTO> listarPautas() {
+		return pautaRepository.findAll().stream().map(PautaDTO::new).collect(Collectors.toList());
 	}
 
 }

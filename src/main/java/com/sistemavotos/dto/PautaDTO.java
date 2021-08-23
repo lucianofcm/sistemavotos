@@ -1,5 +1,6 @@
 package com.sistemavotos.dto;
 
+import com.sistemavotos.domain.Pauta;
 import com.sistemavotos.enumeration.EnumAtiva;
 
 import lombok.AllArgsConstructor;
@@ -22,4 +23,11 @@ public class PautaDTO {
 	private String descricao;
 
 	private EnumAtiva indAtiva;
+	
+	public PautaDTO(Pauta pauta) {
+		this.titulo = pauta.getTitulo();
+		this.descricao = pauta.getDescricao();	
+		this.indAtiva = pauta.getIndAtiva();
+		this.id = pauta.getId();
+	}
 }
