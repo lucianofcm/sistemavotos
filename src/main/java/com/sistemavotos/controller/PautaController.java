@@ -57,7 +57,7 @@ public class PautaController {
 	
 	@GetMapping(value = "/listarPautasNaoInicidas")
 	@ApiOperation(value= "Lista todas as pautas que ainda não foram iniciadas.")
-    public ResponseEntity<List<PautaDTO>> listarPautasNaoIniciads(@RequestBody @Valid PautaDTO pauta){
+    public ResponseEntity<List<PautaDTO>> listarPautasNaoIniciads(){
 		return ResponseEntity.status(HttpStatus.OK).body(pautaService.listarPautasNaoIniciada());
     }
 }
