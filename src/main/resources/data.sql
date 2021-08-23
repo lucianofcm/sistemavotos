@@ -1,4 +1,10 @@
 INSERT INTO usuario (id, nome, cpf) VALUES (1, 'Luciano', '77788486191');
+INSERT INTO usuario (id, nome, cpf) VALUES (2, 'Luciano', '77787787877');
+INSERT INTO usuario (id, nome, cpf) VALUES (3, 'Luciano', '13121454545');
+INSERT INTO usuario (id, nome, cpf) VALUES (4, 'Luciano', '54642111313');
+INSERT INTO usuario (id, nome, cpf) VALUES (5, 'Luciano', '21313121113');
+INSERT INTO usuario (id, nome, cpf) VALUES (6, 'Luciano', '31313131313');
+INSERT INTO usuario (id, nome, cpf) VALUES (7, 'Luciano', '13131311311');
 INSERT INTO pauta (id,titulo,descricao,ind_ativa) VALUES (1,'Pauta 1','Descricao pauta 1','S');
 INSERT INTO pauta (id,titulo,descricao,ind_ativa) VALUES (2,'Pauta 2','Descricao pauta 2','S');
 INSERT INTO pauta (id,titulo,descricao,ind_ativa) VALUES (3,'Pauta 3','Descricao pauta 3','S');
@@ -7,3 +13,9 @@ INSERT INTO duracao_votacao (fim_votacao,inicio_votacao,duracao_votacao,pauta_id
 INSERT INTO opcao_voto (id,titulo)  VALUES (1, 'SIM');
 INSERT INTO opcao_voto (id,titulo)  VALUES (2, 'NÃO');
 INSERT INTO votacao (cpf_usuario,opcao_voto,pauta_id,usuario_id)  VALUES ('77788486191','S',1,1);
+INSERT INTO votacao (cpf_usuario,opcao_voto,pauta_id,usuario_id)  VALUES ('77787787877','S',1,2);
+INSERT INTO votacao (cpf_usuario,opcao_voto,pauta_id,usuario_id)  VALUES ('13121454545','N',1,3);
+INSERT INTO votacao (cpf_usuario,opcao_voto,pauta_id,usuario_id)  VALUES ('54642111313','N',1,4);
+INSERT INTO votacao (cpf_usuario,opcao_voto,pauta_id,usuario_id)  VALUES ('21313121113','N',1,5);
+INSERT INTO votacao (cpf_usuario,opcao_voto,pauta_id,usuario_id)  VALUES ('13131311312','S',1,6);
+INSERT INTO votacao (cpf_usuario,opcao_voto,pauta_id,usuario_id)  VALUES ('31313131313','S',1,7);

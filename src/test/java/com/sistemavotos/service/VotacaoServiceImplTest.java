@@ -1,5 +1,9 @@
 package com.sistemavotos.service;
 
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.not;
+import static org.hamcrest.CoreMatchers.nullValue;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
@@ -38,6 +42,16 @@ class VotacaoServiceImplTest {
 		assertThrows(VotacaoEncerradaException.class,
 				() -> votacaoService.votar(VotacaoDTO.builder().pauta(PautaDTO.builder().id(1).build())
 						.cpfUsuario("77788486191").opcaoVoto(EnumOpcaoVotacao.S).build()));
+	}
+
+	@Test
+	void testResultadoVotacao() throws Exception {
+		assertThat(votacaoService.resultadoVotacao(1).getQtdeVotosSim(), equalTo(4L));
+	}
+	
+	@Test
+	void testResultadoVotacaoVotosNao() throws Exception {
+		assertThat(votacaoService.resultadoVotacao(1).getQtdeVotosNao(), equalTo(3L));
 	}
 	
 }

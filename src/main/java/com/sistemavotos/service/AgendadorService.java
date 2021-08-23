@@ -17,12 +17,15 @@ public class AgendadorService {
 
 	@Autowired
 	private VotacaoSenderService votacaoSenderService;
+	@Autowired
+	private VotacaoService votacaoService;
 
 	private DuracaoVotacaoDTO duracaoVotacao;
 
 	ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(2);
 
-	Runnable task = () -> votacaoSenderService.sendPautaEncerrada(duracaoVotacao);
+	Runnable task = () -> votacaoSenderService
+			.sendPautaEncerrada(votacaoService.resultadoVotacao(duracaoVotacao.getPauta().getId()));
 
 	public void execute(DuracaoVotacaoDTO duracaoVotacao) {
 		this.duracaoVotacao = duracaoVotacao;

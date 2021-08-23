@@ -41,7 +41,7 @@ public class PautaController {
 
 	}
 	
-	@GetMapping(value = "/")
+	@GetMapping(value = "/listarTodasPautas")
 	@ApiOperation(value= "Lista todas as pautas cadastradas")
 	@ApiResponses(value = { @ApiResponse(code = 404, message = "A pauta não foi localizada.") })	
 	public ResponseEntity<List<PautaDTO>> listarTodasPautas() {
@@ -53,6 +53,12 @@ public class PautaController {
 	@ApiResponses(value = { @ApiResponse(code = 400, message = "Os campos título e descrição devem ser preenchidos. ") })
     public ResponseEntity<Pauta> cadastrarPauta(@RequestBody @Valid PautaDTO pauta){
 		return ResponseEntity.status(HttpStatus.OK).body(pautaService.cadastrarPauta(modelMapper.map(pauta, Pauta.class)));
+    }
+	
+	@GetMapping(value = "/listarPautasNaoInicidas")
+	@ApiOperation(value= "Lista todas as pautas que ainda não foram iniciadas.")
+    public ResponseEntity<List<PautaDTO>> listarPautasNaoIniciads(@RequestBody @Valid PautaDTO pauta){
+		return ResponseEntity.status(HttpStatus.OK).body(pautaService.listarPautasNaoIniciada());
     }
 }
 

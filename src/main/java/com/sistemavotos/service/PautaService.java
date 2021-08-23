@@ -11,5 +11,6 @@ public interface PautaService {
 	public Pauta localizarPautaPorID(Integer id);
 	public Boolean pautaEncerrada(Pauta pauta);
 	public List<PautaDTO> listarPautas();
+	public List<PautaDTO> listarPautasNaoIniciada();
 
 }

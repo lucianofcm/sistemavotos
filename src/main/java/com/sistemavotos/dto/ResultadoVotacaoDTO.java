@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 public class ResultadoVotacaoDTO {
 	
 	private PautaDTO pauta;
-	private Integer qtdeVotosSim;
-	private Integer qtdeVotosNao;
+	private Long qtdeVotosSim;
+	private Long qtdeVotosNao;
 
 }

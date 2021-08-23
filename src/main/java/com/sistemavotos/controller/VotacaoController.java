@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sistemavotos.dto.DuracaoVotacaoDTO;
+import com.sistemavotos.dto.ResultadoVotacaoDTO;
 import com.sistemavotos.dto.VotacaoDTO;
 import com.sistemavotos.messageria.VotacaoSenderService;
 import com.sistemavotos.service.AgendadorService;
@@ -50,6 +51,13 @@ public class VotacaoController {
 	@ApiOperation(value= "Realiza votacao caso todos as regras tenham sido validadas.")
     public ResponseEntity<String> votar(@RequestBody @Valid VotacaoDTO votacao){
 		return ResponseEntity.status(HttpStatus.OK).body(votacaoService.votar(votacao));
+    }
+	
+	
+	@GetMapping(value = "/resultadoVotacao/{idPauta}")	
+	@ApiOperation(value= "Apresenta o resultado da votação de uma pauta")
+    public ResponseEntity<ResultadoVotacaoDTO> resultadoVotacao(@RequestBody Integer idPauta){
+		return ResponseEntity.status(HttpStatus.OK).body(votacaoService.resultadoVotacao(idPauta));
     }
 	
 }

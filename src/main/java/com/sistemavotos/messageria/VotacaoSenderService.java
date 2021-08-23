@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.sistemavotos.dto.DuracaoVotacaoDTO;
 import com.sistemavotos.dto.PautaDTO;
+import com.sistemavotos.dto.ResultadoVotacaoDTO;
 
 @Service
 public class VotacaoSenderService implements Serializable{
@@ -29,7 +30,7 @@ public class VotacaoSenderService implements Serializable{
 	private String exchange;
 	
 	
-	public void sendPautaEncerrada(DuracaoVotacaoDTO pauta) throws AmqpException {
-		rabbitTemplate.convertAndSend(exchange, pauta);
+	public void sendPautaEncerrada(ResultadoVotacaoDTO resultadoVotacao) throws AmqpException {
+		rabbitTemplate.convertAndSend(exchange, resultadoVotacao);
 	}
 }

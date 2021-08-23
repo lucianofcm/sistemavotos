@@ -69,4 +69,9 @@ public class PautaServiceImpl implements PautaService {
 		return pautaRepository.findAll().stream().map(PautaDTO::new).collect(Collectors.toList());
 	}
 
+	@Override
+	public List<PautaDTO> listarPautasNaoIniciada() {
+		return pautaRepository.listarPautaNaoIniciadas().stream().map(PautaDTO::new).collect(Collectors.toList());
+	}
+
 }
