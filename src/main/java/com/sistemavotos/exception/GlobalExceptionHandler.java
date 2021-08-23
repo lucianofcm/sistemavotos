@@ -50,7 +50,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(VotacaoEncerradaException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ResponseEntity<Object> controlarVotacaoEncerrdaException(VotacaoEncerradaException votacaoEncerradaException, WebRequest request) {
-        log.error("Não é possível votar pois a votação já foi encerrda.", votacaoEncerradaException);
+        log.error("Votação encerrada");
         return contruirReposta(votacaoEncerradaException, HttpStatus.BAD_REQUEST, request);
     }
     

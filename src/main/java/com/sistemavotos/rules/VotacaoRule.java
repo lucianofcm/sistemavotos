@@ -58,4 +58,11 @@ public class VotacaoRule {
 		return this;
 	}
 	
+	public VotacaoRule votacaoNaoIniciada(Pauta pauta) throws VotacaoEncerradaException {
+		if(duracaoVotacaoRepository.localizarPorPautaNaoIniciada(pauta.getId()) == null){
+			throw new VotacaoEncerradaException("Votação não iniciada.");
+		}
+		return this;
+	}
+	
 }

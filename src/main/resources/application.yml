@@ -4,7 +4,6 @@ server:
     context-path: /sistemavotos
    
 ---
-
 spring:
   profiles:    active:    - prod
   urlValidadorCPF: https://user-info.herokuapp.com/users
@@ -16,7 +15,13 @@ spring:
   jpa:
     show-sql: true    hibernate:      ddl-auto: update
     database-platform: org.hibernate.dialect.PostgreSQLDialect  
-    generate-ddl: true        defer-datasource-initialization: true  devtools:    add-properties: false
+    generate-ddl: true        defer-datasource-initialization: true  devtools:    add-properties: false  rabbitmq:    host: fish.rmq.cloudamqp.com
+    username: bqzncglo
+    virtual-host: bqzncglo
+    template:      exchange: SISVOTOS
+    password: N0fAGgphhvNDixtisk2NCBruzQbJ1nDC  autoconfigure:    exclude:    - true
+    
+    
 server:  error:    include-message: always
     include-binding-errors: always
     include-stacktrace: on-param

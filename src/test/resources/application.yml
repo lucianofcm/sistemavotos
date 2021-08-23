@@ -21,3 +21,14 @@ spring:
   datasource:
     url: jdbc:h2:mem:sisvotosdb;DB_CLOSE_ON_EXIT=FALSE;;DATABASE_TO_UPPER=false
   urlValidadorCPF: https://user-info.herokuapp.com/users
+  rabbitmq:
+    username: bqzncglo
+    host: fish.rmq.cloudamqp.com
+    virtual-host: bqzncglo
+    template:
+      exchange: SISVOTOS
+    password: N0fAGgphhvNDixtisk2NCBruzQbJ1nDC
+  
+  
+  
+  

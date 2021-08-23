@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.sistemavotos.domain.DuracaoVotacao;
 import com.sistemavotos.domain.Pauta;
@@ -25,6 +26,8 @@ public class VotacaoServiceImpl implements VotacaoService {
 	private VotacaoRepository votacaoRepo;
 	@Autowired
 	private DuracaoVotacaoService duracaoVotacaoService;
+	@Autowired
+	private AgendadorService agendadorService;
 
 	@Override
 	public String votar(VotacaoDTO votacao) throws BasicException {
@@ -35,16 +38,13 @@ public class VotacaoServiceImpl implements VotacaoService {
 		return "Votação realizada com sucesso!";
 	}
 
-	private void validarVotacao(VotacaoDTO votacao, Pauta pautaRecuperada) {
-		votacaoRule.votacaoEncerrada(pautaRecuperada).usuarioNaoPodeVota(votacao.getCpfUsuario())
-				.usuarioJaVotou(votacao);
-	}
-
 	@Override
+	@Transactional
 	public void iniciarVotacao(DuracaoVotacaoDTO duracaoVotacao) {
 		Pauta pauta = pautaExiste(duracaoVotacao);
 		votacaoRule.votacaoJaIniciada(pauta.getId());
 		LocalDateTime tempoInicial = LocalDateTime.now();
+		agendadorService.execute(duracaoVotacao);
 		duracaoVotacaoService.gravarInicioVotacao(DuracaoVotacao.builder().pauta(pauta).inicioVotacao(tempoInicial)
 				.tempoDuracao(duracaoVotacao.getTempoDuracao()).fimVotacao(calcularTempoFinalizacao(duracaoVotacao.getTempoDuracao(),tempoInicial)).build());
 	}
@@ -56,11 +56,10 @@ public class VotacaoServiceImpl implements VotacaoService {
 		}
 		return pauta;
 	}
-
-	@Override
-	public void encerrarVotacao(Votacao votacao) {
-		// TODO Auto-generated method stub
-
+	
+	private void validarVotacao(VotacaoDTO votacao, Pauta pautaRecuperada) {
+		votacaoRule.votacaoNaoIniciada(pautaRecuperada).votacaoEncerrada(pautaRecuperada).usuarioNaoPodeVota(votacao.getCpfUsuario())
+				.usuarioJaVotou(votacao);
 	}
 
 	@Override

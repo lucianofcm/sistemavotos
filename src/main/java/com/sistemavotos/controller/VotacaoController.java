@@ -14,15 +14,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sistemavotos.dto.DuracaoVotacaoDTO;
-import com.sistemavotos.dto.PautaDTO;
 import com.sistemavotos.dto.VotacaoDTO;
+import com.sistemavotos.messageria.VotacaoSenderService;
+import com.sistemavotos.service.AgendadorService;
 import com.sistemavotos.service.PautaService;
 import com.sistemavotos.service.VotacaoService;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
 
 @Api(tags = "Voto controller.")
 @RestController
@@ -34,6 +33,10 @@ public class VotacaoController {
 	private ModelMapper modelMapper;
 	@Autowired
 	private VotacaoService votacaoService;
+	@Autowired
+	private AgendadorService agendadorService;
+	@Autowired
+	private VotacaoSenderService rabbitMqSender;
 	
 	@PostMapping("/iniciarVotacao")
 	@ApiOperation(value= "Inicia a votação por tempo determinado")
@@ -45,7 +48,7 @@ public class VotacaoController {
 
 	@PostMapping	
 	@ApiOperation(value= "Realiza votacao caso todos as regras tenham sido validadas.")
-    public ResponseEntity<String> votar(@RequestBody @Valid VotacaoDTO votacao) throws Exception{
+    public ResponseEntity<String> votar(@RequestBody @Valid VotacaoDTO votacao){
 		return ResponseEntity.status(HttpStatus.OK).body(votacaoService.votar(votacao));
     }
 	
