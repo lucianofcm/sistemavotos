@@ -26,15 +26,14 @@ class PautaControllerTest {
 	@Test
 	void validarServicoPautaTest() throws Exception {
 
-		mvc.perform(get("/pauta/").headers(new HttpHeaders()).accept(MediaType.APPLICATION_JSON))
+		mvc.perform(get("/pauta/1").headers(new HttpHeaders()).accept(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk()).andDo(print());
 	}
 
 	@Test
 	void listarPautas() throws Exception {
-		mvc.perform(get("/pauta/").headers(new HttpHeaders()).accept(MediaType.APPLICATION_JSON))
-				.andExpect(status().isOk()).andExpect(jsonPath("$[0].titulo", equalTo("Pauta 1")))
-				.andExpect(jsonPath("$[1].titulo", equalTo("Pauta 2")));
+		mvc.perform(get("/pauta/listarPautasNaoInicidas/").headers(new HttpHeaders()).accept(MediaType.APPLICATION_JSON))
+				.andExpect(status().isOk()).andExpect(jsonPath("$[0].titulo", equalTo("Pauta 3")));
 
 	}
 

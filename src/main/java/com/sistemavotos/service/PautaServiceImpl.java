@@ -64,11 +64,21 @@ public class PautaServiceImpl implements PautaService {
 		return pautaRepository.getById(pauta.getId()).getIndAtiva().equals(EnumAtiva.N);
 	}
 	
+	/**
+	 * Listar todas as pautas cadastradas
+	 *
+	 * @return the lista das pautas
+	 */
 	@Override
 	public List<PautaDTO> listarPautas() {
 		return pautaRepository.findAll().stream().map(PautaDTO::new).collect(Collectors.toList());
 	}
 
+	/**
+	 * 	Listar todas pautas não iniciaas
+	 *
+	 * @return a lista das pauta
+	 */
 	@Override
 	public List<PautaDTO> listarPautasNaoIniciada() {
 		return pautaRepository.listarPautaNaoIniciadas().stream().map(PautaDTO::new).collect(Collectors.toList());

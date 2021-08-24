@@ -10,6 +10,9 @@ import org.springframework.stereotype.Service;
 import com.sistemavotos.dto.DuracaoVotacaoDTO;
 import com.sistemavotos.messageria.VotacaoSenderService;
 
+/**
+ * The Class AgendadorService.
+ */
 @Service
 public class AgendadorService {
 
@@ -22,11 +25,17 @@ public class AgendadorService {
 
 	private DuracaoVotacaoDTO duracaoVotacao;
 
-	ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(2);
+	ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
 
+	/** Envia para o serviço de mensageria o resultdo após o término da votação */
 	Runnable task = () -> votacaoSenderService
 			.sendPautaEncerrada(votacaoService.resultadoVotacao(duracaoVotacao.getPauta().getId()));
 
+	/**
+	 * Executa o agendamento a partir das informações passadas.
+	 *
+	 * @param duracaoVotacao informação sobre a duração da votação.
+	 */
 	public void execute(DuracaoVotacaoDTO duracaoVotacao) {
 		this.duracaoVotacao = duracaoVotacao;
 		if (duracaoVotacao.getTempoDuracao() != null) {
@@ -36,6 +45,11 @@ public class AgendadorService {
 		}
 	}
 
+	/**
+	 * Método para executar o agendador para encerramento da votação
+	 *
+	 * @param tempoDuracaoVotacao o tempo de espera até a execução do agendador.
+	 */
 	private void definirSchedule(Long tempoDuracaoVotacao) {
 		scheduler.schedule(task, tempoDuracaoVotacao, TimeUnit.MINUTES);
 	}

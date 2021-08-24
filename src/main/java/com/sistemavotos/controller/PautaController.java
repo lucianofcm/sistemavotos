@@ -24,7 +24,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
-@Api(tags = "Voto controller.")
+@Api(tags = "Pauta controller." )
 @RestController
 @RequestMapping(value = "/pauta")
 public class PautaController {
@@ -33,6 +33,7 @@ public class PautaController {
 	@Autowired
 	private ModelMapper modelMapper;
 
+	@ApiVersion(2)
 	@GetMapping(value = "/{idPauta}")
 	@ApiOperation(value= "Recupera uma pauta a partir do seu ID.")
 	@ApiResponses(value = { @ApiResponse(code = 404, message = "A pauta não foi localizada.") })	

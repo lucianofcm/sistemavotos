@@ -24,7 +24,7 @@ import com.sistemavotos.service.VotacaoService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
-@Api(tags = "Voto controller.")
+@Api(tags = "Votacão controller.")
 @RestController
 @RequestMapping(value = "/votacao")
 public class VotacaoController {
