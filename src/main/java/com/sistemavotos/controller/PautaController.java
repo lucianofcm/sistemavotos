@@ -33,7 +33,6 @@ public class PautaController {
 	@Autowired
 	private ModelMapper modelMapper;
 
-	@ApiVersion(2)
 	@GetMapping(value = "/{idPauta}")
 	@ApiOperation(value= "Recupera uma pauta a partir do seu ID.")
 	@ApiResponses(value = { @ApiResponse(code = 404, message = "A pauta não foi localizada.") })	

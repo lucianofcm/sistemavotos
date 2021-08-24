@@ -28,16 +28,9 @@ import io.swagger.annotations.ApiOperation;
 @RestController
 @RequestMapping(value = "/votacao")
 public class VotacaoController {
-	@Autowired
-	private PautaService pautaService;
-	@Autowired
-	private ModelMapper modelMapper;
+
 	@Autowired
 	private VotacaoService votacaoService;
-	@Autowired
-	private AgendadorService agendadorService;
-	@Autowired
-	private VotacaoSenderService rabbitMqSender;
 	
 	@PostMapping("/iniciarVotacao")
 	@ApiOperation(value= "Inicia a votação por tempo determinado")
