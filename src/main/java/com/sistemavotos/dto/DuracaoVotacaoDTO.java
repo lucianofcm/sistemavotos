@@ -11,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.sistemavotos.domain.DuracaoVotacao;
 import com.sistemavotos.domain.Pauta;
 import com.sistemavotos.enumeration.EnumOpcaoVotacao;
 
@@ -28,11 +29,16 @@ import lombok.NoArgsConstructor;
 public class DuracaoVotacaoDTO {
 
 	private Integer id;
-	
+	private LocalDateTime inicioVotacao;
 	private LocalDateTime fimVotacao;
-	
 	private Long tempoDuracao;
-	
-	private Pauta pauta;
+	private PautaDTO pauta;
+
+	DuracaoVotacaoDTO(DuracaoVotacao duracaoVotacao) {
+		this.id = duracaoVotacao.getId();
+		this.inicioVotacao = duracaoVotacao.getInicioVotacao();
+		this.fimVotacao = duracaoVotacao.getFimVotacao();
+		this.pauta = new PautaDTO(duracaoVotacao.getPauta());
+	}
 
 }

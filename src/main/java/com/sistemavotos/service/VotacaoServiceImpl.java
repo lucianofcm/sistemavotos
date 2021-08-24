@@ -3,6 +3,7 @@ package com.sistemavotos.service;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -33,6 +34,8 @@ public class VotacaoServiceImpl implements VotacaoService {
 	private DuracaoVotacaoService duracaoVotacaoService;
 	@Autowired
 	private AgendadorService agendadorService;
+	@Autowired
+	private ModelMapper modelMapper;
 
 	@Override
 	public String votar(VotacaoDTO votacao) throws BasicException {
@@ -72,9 +75,10 @@ public class VotacaoServiceImpl implements VotacaoService {
 	public ResultadoVotacaoDTO resultadoVotacao(Integer idPauta) {
 		Pauta pautaBanco = pautaService.localizarPautaPorID(idPauta);
 		List<Votacao> resultado = votacaoRepo.listarVotacaoPorPauta(pautaBanco.getId());
+		DuracaoVotacaoDTO duracaoVotacaoDTO = modelMapper.map(duracaoVotacaoService.localizarPorPauta(idPauta), DuracaoVotacaoDTO.class);
 		return ResultadoVotacaoDTO.builder().pauta(new PautaDTO(pautaBanco))
 				.qtdeVotosSim(resultado.stream().filter(v -> v.getOpcaoVoto().equals(EnumOpcaoVotacao.S)).count())
-				.qtdeVotosNao(resultado.stream().filter(v -> v.getOpcaoVoto().equals(EnumOpcaoVotacao.N)).count()).build();
+				.qtdeVotosNao(resultado.stream().filter(v -> v.getOpcaoVoto().equals(EnumOpcaoVotacao.N)).count()).duracaoDTO(duracaoVotacaoDTO).build();
 	}
 
 	private LocalDateTime calcularTempoFinalizacao(Long tempoDuracao, LocalDateTime tempoInicial) {

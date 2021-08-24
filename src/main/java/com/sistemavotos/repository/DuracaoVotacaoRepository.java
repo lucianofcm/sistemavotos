@@ -16,13 +16,11 @@ public interface DuracaoVotacaoRepository extends JpaRepository<DuracaoVotacao, 
 	@Query("select d from DuracaoVotacao d where d.pauta.id = :idPauta and d.inicioVotacao is not null")
 	DuracaoVotacao localizarPorPautaNaoIniciada(@Param("idPauta")Integer idPauta);
 	
+	@Query("select d from DuracaoVotacao d where d.pauta.id = :idPauta")
+	DuracaoVotacao lucalizarPorPautaId(@Param("idPauta")Integer idPauta);
 	
 	DuracaoVotacao findByPautaAndFimVotacaoBefore(Pauta pauta,LocalDateTime fimVotacao);
 	
-	/*
-	 * @Query("select d from DuracaoVotacao d where d.pauta.id = :idPauta and d.fimVotacao < "
-	 * ) DuracaoVotacao localizarPorPautaFimVotacao(@Param("idPauta")Integer
-	 * idPauta);
-	 */
+	
 	
 }

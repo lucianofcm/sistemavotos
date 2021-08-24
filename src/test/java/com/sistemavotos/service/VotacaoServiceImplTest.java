@@ -1,8 +1,6 @@
 package com.sistemavotos.service;
 
 import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.CoreMatchers.not;
-import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -34,7 +32,7 @@ class VotacaoServiceImplTest {
 	void testVotacaoJaIniciada() {
 		Pauta pauta = pautaService.localizarPautaPorID(1);
 		assertThrows(BasicException.class, () -> votacaoService
-				.iniciarVotacao(DuracaoVotacaoDTO.builder().pauta(pauta).tempoDuracao(10l).build()));
+				.iniciarVotacao(DuracaoVotacaoDTO.builder().pauta(PautaDTO.builder().id(pauta.getId()).build()).tempoDuracao(10l).build()));
 	}
 
 	@Test

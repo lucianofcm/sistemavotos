@@ -11,9 +11,10 @@ import lombok.NoArgsConstructor;
 @Data
 @Builder
 @EqualsAndHashCode
-public class ResultadoVotacaoDTO {
+public class ResultadoVotacaoDTO {	
 	
 	private PautaDTO pauta;
+	private DuracaoVotacaoDTO duracaoDTO;
 	private Long qtdeVotosSim;
 	private Long qtdeVotosNao;
 

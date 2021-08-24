@@ -13,7 +13,7 @@ spring:
     username: bcmheeifucxpfz
     password: 898f126aff80f3a369c238bee1fb3cb95a66f01c0755685b453ae03ed1a3afaf
   jpa:
-    show-sql: true    hibernate:      ddl-auto: update
+    show-sql: true    hibernate:      ddl-auto: none
     database-platform: org.hibernate.dialect.PostgreSQLDialect  
     generate-ddl: true        defer-datasource-initialization: true  devtools:    add-properties: false  rabbitmq:    host: fish.rmq.cloudamqp.com
     username: bqzncglo

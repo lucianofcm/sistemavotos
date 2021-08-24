@@ -23,6 +23,8 @@ import com.sistemavotos.service.VotacaoService;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 
 @Api(tags = "Votacão controller.")
 @RestController
@@ -49,7 +51,8 @@ public class VotacaoController {
 	
 	@GetMapping(value = "/resultadoVotacao/{idPauta}")	
 	@ApiOperation(value= "Apresenta o resultado da votação de uma pauta")
-    public ResponseEntity<ResultadoVotacaoDTO> resultadoVotacao(@RequestBody Integer idPauta){
+	@ApiResponses(value = { @ApiResponse(code = 404, message = "A pauta não foi localizada.") })
+    public ResponseEntity<ResultadoVotacaoDTO> resultadoVotacao(@PathVariable Integer idPauta){
 		return ResponseEntity.status(HttpStatus.OK).body(votacaoService.resultadoVotacao(idPauta));
     }
 	
