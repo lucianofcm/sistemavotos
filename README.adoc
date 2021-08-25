@@ -4,7 +4,7 @@ Solução para gerenciamento sessão votação.
 
 == Introdução
 
-Este projeto foi criado com a finaliade de implementar o que foi proposto no desafio técnico que tem como objetivo criar uma solução de back-end para gerenciar sessões de votação.
+Este projeto foi criado com a finalidade de implementar o que foi proposto no desafio técnico que tem como objetivo criar uma solução de back-end para gerenciar sessões de votação.
 
 A solução desenvolvida consiste em:
 
