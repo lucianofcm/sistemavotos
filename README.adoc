@@ -98,3 +98,13 @@ passwd: N0fAGgphhvNDixtisk2NCBruzQbJ1nDC
 ***Todas as funcionalidades pode ser testadas utilizando o ambiente publicado no HEROKU***
 
 https://sisvotos.herokuapp.com/sistemavotos/
+
+
+== Versionamento
+
+A estratégia de versionamento escolhida foi pela simplicidade inicial da API e pelo tempo exíguo
+foi exibir a versão através de um endpoint (/versao), mas o ideal seria criar um tipo de versionamento
+mais efetivo através da URI ou através de cabeçalhos personalizados nesses casos depende da possibilidade
+de atualização dos clientes em caso de modificações importantes na api.
+
+
