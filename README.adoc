@@ -51,7 +51,9 @@ Casos de testes:
 * Exibir resultado votação
 
 Executado através do mvn verify.
+
 O script está está na pasta src/test/resources/jmeter.
+
 Os relatórios da execução são gerados na pasta target/jmeter.
 
 == Documentação
