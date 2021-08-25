@@ -43,6 +43,7 @@ Para o teste de performance foi utilizada a ferramenta jmeter para geração dos
 scripts e a utilização de um plugin maven para poder executar os testes no momento do build.
 
 Casos de testes:
+
 * Votar
 * Cadastrar pauta
 * Listar pautas não iniciadas
