@@ -1,0 +1,5 @@
+timeStamp,elapsed,label,responseCode,responseMessage,threadName,dataType,success,failureMessage,bytes,sentBytes,grpThreads,allThreads,Latency,IdleTime,Connect
+1629763757917,546,Cadastrar_Pauta,200,HTTP/1.1 200,Cadastrar Pauta 1-1,text,true,,252,0,1,1,543,0,0
+1629763758490,173,Iniciar_votacao,200,HTTP/1.1 200,Cadastrar Pauta 1-1,text,true,,185,0,1,1,173,0,0
+1629763758664,220,Votar,200,HTTP/1.1 200,Cadastrar Pauta 1-1,text,true,,200,0,1,1,220,0,0
+1629763758974,1984,Requisição HTTP,200,,Grupo de Usuários 1-1,text,true,,1740,168,1,1,1983,0,1802
