@@ -84,7 +84,7 @@ No segundo pipeline configurei o addons do RabbitMQ.
 
 Todos utilizando free dynos, vai que vocês não me contratam.(linha da descontração).
 
-Caso queiram observar a entrega das mensagens e o conteúdo:attribute
+Caso queiram observar a entrega das mensagens e o conteúdo:
 
 Host: https://fish.rmq.cloudamqp.com/
 
