@@ -9,6 +9,6 @@ public interface VotacaoService {
 
 	String votar(VotacaoDTO votacao) throws BasicException;
 	ResultadoVotacaoDTO resultadoVotacao(Integer idPauta);	
-	void iniciarVotacao(DuracaoVotacaoDTO duracaoVotacao);
+	DuracaoVotacaoDTO iniciarVotacao(DuracaoVotacaoDTO duracaoVotacao);
 	
 }

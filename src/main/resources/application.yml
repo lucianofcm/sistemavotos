@@ -15,7 +15,7 @@ spring:
   jpa:
     show-sql: true    hibernate:      ddl-auto: none
     database-platform: org.hibernate.dialect.PostgreSQLDialect  
-    generate-ddl: true        defer-datasource-initialization: true  devtools:    add-properties: false  rabbitmq:    host: fish.rmq.cloudamqp.com
+    generate-ddl: false        defer-datasource-initialization: true  devtools:    add-properties: false  rabbitmq:    host: fish.rmq.cloudamqp.com
     username: bqzncglo
     virtual-host: bqzncglo
     template:      exchange: SISVOTOS

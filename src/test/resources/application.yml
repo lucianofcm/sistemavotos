@@ -13,13 +13,13 @@ spring:
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: none
+      ddl-auto: update
     generate-ddl: true    
     defer-datasource-initialization: true
   devtools:
     add-properties: false
   datasource:
-    url: jdbc:h2:mem:sisvotosdb;DB_CLOSE_ON_EXIT=FALSE;DATABASE_TO_UPPER=false
+    url: jdbc:h2:mem:sisvotosdb;DB_CLOSE_ON_EXIT=FALSE;DATABASE_TO_UPPER=true
   urlValidadorCPF: https://user-info.herokuapp.com/users
   rabbitmq:
     username: bqzncglo

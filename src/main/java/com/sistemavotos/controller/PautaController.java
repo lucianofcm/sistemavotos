@@ -7,6 +7,7 @@ import javax.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -33,7 +34,7 @@ public class PautaController {
 	@Autowired
 	private ModelMapper modelMapper;
 
-	@GetMapping(value = "/{idPauta}")
+	@GetMapping(value = "/{idPauta}", produces=MediaType.APPLICATION_JSON_VALUE)
 	@ApiOperation(value= "Recupera uma pauta a partir do seu ID.")
 	@ApiResponses(value = { @ApiResponse(code = 404, message = "A pauta não foi localizada.") })	
 	public PautaDTO localizarPautaPorId(@PathVariable Integer idPauta) {
@@ -41,7 +42,7 @@ public class PautaController {
 
 	}
 	
-	@GetMapping(value = "/listarTodasPautas")
+	@GetMapping(value = "/listarTodasPautas", produces=MediaType.APPLICATION_JSON_VALUE)
 	@ApiOperation(value= "Lista todas as pautas cadastradas")
 	@ApiResponses(value = { @ApiResponse(code = 404, message = "A pauta não foi localizada.") })	
 	public ResponseEntity<List<PautaDTO>> listarTodasPautas() {
@@ -55,7 +56,7 @@ public class PautaController {
 		return ResponseEntity.status(HttpStatus.OK).body(pautaService.cadastrarPauta(modelMapper.map(pauta, Pauta.class)));
     }
 	
-	@GetMapping(value = "/listarPautasNaoInicidas")
+	@GetMapping(value = "/listarPautasNaoInicidas", produces=MediaType.APPLICATION_JSON_VALUE)
 	@ApiOperation(value= "Lista todas as pautas que ainda não foram iniciadas.")
     public ResponseEntity<List<PautaDTO>> listarPautasNaoIniciads(){
 		return ResponseEntity.status(HttpStatus.OK).body(pautaService.listarPautasNaoIniciada());

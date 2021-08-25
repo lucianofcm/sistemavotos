@@ -36,9 +36,8 @@ public class VotacaoController {
 	
 	@PostMapping("/iniciarVotacao")
 	@ApiOperation(value= "Inicia a votação por tempo determinado")
-    public ResponseEntity<Class<Void>> iniciarVotacao(@RequestBody @Valid DuracaoVotacaoDTO votacao){
-		votacaoService.iniciarVotacao(votacao);
-		return ResponseEntity.status(HttpStatus.OK).body(Void.class);
+    public ResponseEntity<DuracaoVotacaoDTO> iniciarVotacao(@RequestBody @Valid DuracaoVotacaoDTO votacao){
+		return ResponseEntity.status(HttpStatus.OK).body(votacaoService.iniciarVotacao(votacao));
     }
 	
 

@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import com.sistemavotos.domain.DuracaoVotacao;
 import com.sistemavotos.domain.Pauta;
 import com.sistemavotos.enumeration.EnumOpcaoVotacao;
@@ -29,16 +31,19 @@ import lombok.NoArgsConstructor;
 public class DuracaoVotacaoDTO {
 
 	private Integer id;
+	@JsonSerialize(using = LocalDateTimeSerializer.class)
 	private LocalDateTime inicioVotacao;
+	@JsonSerialize(using = LocalDateTimeSerializer.class)
 	private LocalDateTime fimVotacao;
 	private Long tempoDuracao;
 	private PautaDTO pauta;
 
-	DuracaoVotacaoDTO(DuracaoVotacao duracaoVotacao) {
+	public DuracaoVotacaoDTO(DuracaoVotacao duracaoVotacao) {
 		this.id = duracaoVotacao.getId();
 		this.inicioVotacao = duracaoVotacao.getInicioVotacao();
 		this.fimVotacao = duracaoVotacao.getFimVotacao();
 		this.pauta = new PautaDTO(duracaoVotacao.getPauta());
+		this.tempoDuracao = duracaoVotacao.getTempoDuracao();
 	}
 
 }

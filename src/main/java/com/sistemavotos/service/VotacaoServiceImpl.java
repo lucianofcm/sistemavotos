@@ -15,7 +15,6 @@ import com.sistemavotos.dto.DuracaoVotacaoDTO;
 import com.sistemavotos.dto.PautaDTO;
 import com.sistemavotos.dto.ResultadoVotacaoDTO;
 import com.sistemavotos.dto.VotacaoDTO;
-import com.sistemavotos.enumeration.EnumAtiva;
 import com.sistemavotos.enumeration.EnumOpcaoVotacao;
 import com.sistemavotos.exception.BasicException;
 import com.sistemavotos.repository.VotacaoRepository;
@@ -48,14 +47,14 @@ public class VotacaoServiceImpl implements VotacaoService {
 
 	@Override
 	@Transactional
-	public void iniciarVotacao(DuracaoVotacaoDTO duracaoVotacao) {
+	public DuracaoVotacaoDTO iniciarVotacao(DuracaoVotacaoDTO duracaoVotacao) {
 		Pauta pauta = pautaExiste(duracaoVotacao);
 		votacaoRule.votacaoJaIniciada(pauta.getId());
 		LocalDateTime tempoInicial = LocalDateTime.now();
 		agendadorService.execute(duracaoVotacao);
-		duracaoVotacaoService.gravarInicioVotacao(DuracaoVotacao.builder().pauta(pauta).inicioVotacao(tempoInicial)
+		return new DuracaoVotacaoDTO(duracaoVotacaoService.gravarInicioVotacao(DuracaoVotacao.builder().pauta(pauta).inicioVotacao(tempoInicial)
 				.tempoDuracao(duracaoVotacao.getTempoDuracao())
-				.fimVotacao(calcularTempoFinalizacao(duracaoVotacao.getTempoDuracao(), tempoInicial)).build());
+				.fimVotacao(calcularTempoFinalizacao(duracaoVotacao.getTempoDuracao(), tempoInicial)).build()));
 	}
 
 	private Pauta pautaExiste(DuracaoVotacaoDTO duracaoVotacao) {
