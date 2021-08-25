@@ -65,7 +65,7 @@ da API foi utilizado o swagger sendo possível consultá-lo no endereço:
 https://sisvotos.herokuapp.com/sistemavotos/swagger-ui/#/
 
 
-== Agendamento e Messageria
+== Agendamento e Mensageria
 
 Foi criado a uma solução de mensageria que consiste no envio de mensagem contendo o resultado 
 da votação que foi finalizada em determinado momento.
