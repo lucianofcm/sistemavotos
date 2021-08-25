@@ -87,5 +87,7 @@ Todos utilizando free dynos, vai que vocês não me contratam.(linha da descontr
 Caso queiram observar a entrega das mensagens e o conteúdo:attribute
 
 Host: https://fish.rmq.cloudamqp.com/
+
 user: bqzncglo
+
 passwd: N0fAGgphhvNDixtisk2NCBruzQbJ1nDC
