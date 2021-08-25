@@ -81,6 +81,7 @@ parâmetro a duração da votação. Esse serviço é basicamente para enviar o 
 Para uma demonstração mais efetiva do que foi feito criei doIs pipelines na plataforma HEROKU sendo no primeiro
 está configurado a aplicação e o servidor de banco de dados postgree.
 No segundo pipeline configurei o addons do RabbitMQ.
+
 Todos utilizando free dynos, vai que vocês não me contratam.(linha da descontração).
 
 Caso queiram observar a entrega das mensagens e o conteúdo:attribute
