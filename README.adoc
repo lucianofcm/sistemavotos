@@ -92,6 +92,6 @@ user: bqzncglo
 
 passwd: N0fAGgphhvNDixtisk2NCBruzQbJ1nDC
 
-***Todas as funcionalidades pode ser testadas utilizando o ambiente publicado no HEROKU:
+***Todas as funcionalidades pode ser testadas utilizando o ambiente publicado no HEROKU***
 
 https://sisvotos.herokuapp.com/sistemavotos/
