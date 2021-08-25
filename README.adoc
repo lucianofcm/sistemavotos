@@ -69,12 +69,15 @@ https://sisvotos.herokuapp.com/sistemavotos/swagger-ui/#/
 
 Foi criado a uma solução de mensageria que consiste no envio de mensagem contendo o resultado 
 da votação que foi finalizada em determinado momento.
+
 A votação é iniciada informando a pauta e quantidade de tempo em minutos que votação deve 
 durar, neste momento o sistema grava a data, hora, minuto e segundo em que a votação foi iniciada
 e calcula o o tempo final da votação a partir do tempo de duração e persiste essas informações em banco.
 Além disso um nesse momento do inicio da votação um serviço de execução agendada é iniciado tendo como
 parâmetro a duração da votação. Esse serviço é basicamente para enviar o resultado para a fila de mensageria.
 
+No servidor RabbitMQ foi criado um EXCHANGE do tipo FANOUT que direciona uma cópia da mensagem recebida para as 4 filas criadas
+e vinculandas as esse EXCHANGE.
 
 == Ambiente
 
