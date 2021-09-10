@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sistemavotos.domain.DuracaoVotacao;
-import com.sistemavotos.dto.DuracaoVotacaoDTO;
 import com.sistemavotos.repository.DuracaoVotacaoRepository;
 
 @Service
@@ -23,9 +22,7 @@ public class DuracaoVotacaoServiceImpl implements DuracaoVotacaoService {
 	 */
 	@Override
 	public DuracaoVotacao gravarInicioVotacao(DuracaoVotacao duracaoVotacao) {
-		return duracaoVotacaoRepo.save(DuracaoVotacao.builder().pauta(duracaoVotacao.getPauta())
-				.tempoDuracao(duracaoVotacao.getTempoDuracao()).inicioVotacao(duracaoVotacao.getInicioVotacao())
-				.fimVotacao(duracaoVotacao.getFimVotacao()).build());
+		return duracaoVotacaoRepo.save(duracaoVotacao);
 	}
 
 	@Override

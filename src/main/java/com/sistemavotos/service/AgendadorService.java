@@ -18,14 +18,18 @@ public class AgendadorService {
 
 	private static final long TEMPO_PADRAO_DURACAO = 2l;
 
-	@Autowired
 	private VotacaoSenderService votacaoSenderService;
-	@Autowired
 	private VotacaoService votacaoService;
 
 	private DuracaoVotacaoDTO duracaoVotacao;
 
 	ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+	
+	public AgendadorService(VotacaoSenderService votacaoSenderService, VotacaoService votacaoService) {
+		this.votacaoSenderService = votacaoSenderService;
+		this.votacaoService = votacaoService;
+	}
+
 
 	/** Envia para o serviço de mensageria o resultdo após o término da votação */
 	Runnable task = () -> votacaoSenderService

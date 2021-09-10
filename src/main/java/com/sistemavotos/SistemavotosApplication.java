@@ -4,6 +4,7 @@ import org.springframework.amqp.rabbit.annotation.EnableRabbit;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.kafka.annotation.EnableKafka;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -11,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 @SpringBootApplication
 @ComponentScan("com.sistemavotos.*")
 @EnableRabbit
+@EnableKafka
 public class SistemavotosApplication {
 
 	public static void main(String[] args) {

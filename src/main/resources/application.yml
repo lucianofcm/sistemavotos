@@ -2,7 +2,7 @@ server:
   port: 8080
   servlet:
     context-path: /sistemavotos
-   
+       
 ---
 spring:
   profiles:    active:    - prod
@@ -20,8 +20,25 @@ spring:
     virtual-host: bqzncglo
     template:      exchange: SISVOTOS
     password: N0fAGgphhvNDixtisk2NCBruzQbJ1nDC  autoconfigure:    exclude:    - true
-    
-    
+  kafka:    bootstrap-servers:    - localhost:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      batch-size: 65536
+      buffer-memory: 524288
+    consumer:
+      group-id: 
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+
+kafka:
+  topic:
+    group-id: topicGroupId
+    topic-name:
+      - topic1
+      - topic2
+      - topic3
+
 server:  error:    include-message: always
     include-binding-errors: always
     include-stacktrace: on-param

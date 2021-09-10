@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,18 +24,22 @@ import com.sistemavotos.rules.VotacaoRule;
 @Service
 public class VotacaoServiceImpl implements VotacaoService {
 
-	@Autowired
 	private PautaService pautaService;
-	@Autowired
 	private VotacaoRule votacaoRule;
-	@Autowired
 	private VotacaoRepository votacaoRepo;
-	@Autowired
 	private DuracaoVotacaoService duracaoVotacaoService;
-	@Autowired
 	private AgendadorService agendadorService;
-	@Autowired
 	private ModelMapper modelMapper;
+
+	public VotacaoServiceImpl(PautaService pautaService, VotacaoRule votacaoRule, VotacaoRepository votacaoRepo,
+			DuracaoVotacaoService duracaoVotacaoService, @Lazy AgendadorService agendadorService, ModelMapper modelMapper) {
+		this.pautaService = pautaService;
+		this.votacaoRule = votacaoRule;
+		this.votacaoRepo = votacaoRepo;
+		this.duracaoVotacaoService = duracaoVotacaoService;
+		this.agendadorService = agendadorService;
+		this.modelMapper = modelMapper;
+	}
 
 	@Override
 	public String votar(VotacaoDTO votacao) throws BasicException {
